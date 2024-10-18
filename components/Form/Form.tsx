@@ -1,50 +1,71 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-export function Form(){
+export function Form() {
     const [height, setHeight] = useState('');
-    const [weigth, setWeigth] = useState('');
+    const [weight, setWeight] = useState('');
     const [result, setResult] = useState('');
 
-    function imcCalculator()
-    {
-        let totalImc = (weigth/(height*height)).toFixed(2)
-
-        setResult(totalImc);
-    }
+    const [Imclist, setImclist] = useState([]);
 
     function validatorImc()
     {
-        if(weigth !='' && height !='')
-        {
-            imcCalculator()
+        console.log(Imclist);
+        if(weight !== undefined && height !== undefined) {
+            let totalImc = (weight/(height*height)).toFixed(2);
+
+            
+            //setHeight((arr)=> [...arr,totalImc]);
+           Imclist.push(totalImc)//adicionando um indice
+           setResult(totalImc)//imc receber novo resultado
+
+
+            setResult(totalImc)
             setHeight('')
-            setWeigth('')
-        }
+            setWeight('')
+        }   
     }
+
     return(
         <View style={styles.formContext}>
             <View style={styles.form}>
                 <Text style={styles.formLabel}>Altura:</Text>
                 <TextInput
-                placeholder="Ex. 1.85"
-                value={height}
-                style={styles.formInput}
+                    onChangeText={setHeight}
+                    inputMode="numeric"
+                    placeholder="Ex. 1.85"
+                    value={height}
+                    style={styles.formInput}
                 />
 
                 <Text style={styles.formLabel}>Peso:</Text>
                 <TextInput
-                placeholder="Ex. 69.5"
-                value={weigth}
-                style={styles.formInput}
+                    onChangeText={setWeight}
+                    inputMode="numeric"
+                    placeholder="Ex. 69.5"
+                    value={weight}
+                    style={styles.formInput}
                 />
 
-                <Pressable style={styles.formButton} onPress={()=> validatorImc}>
-                    
+                <Pressable
+                    onPress={validatorImc}
+                    style={styles.formButton} 
+                >
                     <Text style={styles.formButtonText}>Calcular</Text>
                 </Pressable>
 
                 <Text style={styles.formResult}>{result}</Text>
+
+                <FlatList
+                    data={Imclist.reverse()}
+                    renderItem={({item})=> {
+                        return(
+                        <View>
+                            <Text>{item}</Text>
+                        </View>
+                        )
+                    }}
+                />
             </View>
         </View>
     )
