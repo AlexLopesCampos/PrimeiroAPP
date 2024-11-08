@@ -1,11 +1,15 @@
 import { StyleSheet, View } from 'react-native';
 
 import { Form } from '@/components/Form/Form';
+import { Triângulo } from '@/components/Form/Triângulo';
 
 export default function HomeScreen() {
   return (
-   <View>
+   /*<View>
     <Form></Form>
+   </View>*/
+   <View>
+    <Triângulo></Triângulo>
    </View>
   );
 }
