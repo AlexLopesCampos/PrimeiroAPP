@@ -23,6 +23,33 @@ export default function TabLayout() {
           ),
         }}
       />
+        <Tabs.Screen
+        name="Auth/Login"
+        options={{
+          title: 'Login',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Trabalhe"
+        options={{
+          title: 'TrabalheConosco',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Hitoria"
+        options={{
+          title: 'Historia',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="explore"
         options={{
